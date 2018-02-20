@@ -25,13 +25,14 @@ export namespace AnnouncementProps {
 
 function mapStateToProps(state: any) {
     return {
-        valid: state.announcement.isValid
+        valid: state.announcement.isValid,
+        announcement: state.announcement
     };
 }
 
 function mapDispatchToProps(dispatch: any) {
     return {
-        postAnnouncement: (message: string): string => dispatch(postAnnouncement(message))
+        postAnnouncement: (message: IAnnouncement): string => dispatch(postAnnouncement(message))
     };
 }
 
