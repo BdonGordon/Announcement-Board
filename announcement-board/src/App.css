@@ -26,3 +26,34 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.App-background {
+    background-color: #2E2E2E;
+    text-align: center;
+}
+
+text {
+    color: white;
+}
+
+h4 {
+    color: white;
+}
+
+h5 {
+    color: white;
+}
+
+.textarea-dimens {
+    height: 1em;
+    width: 40em;
+}
+
+.submit-button {
+    margin-top: 15px;
+
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
