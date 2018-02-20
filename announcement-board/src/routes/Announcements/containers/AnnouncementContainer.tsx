@@ -8,11 +8,10 @@ export namespace AnnouncementProps {
     //IStateProps is state values from the store
     export interface IStateProps {
         valid: boolean;
-        announcement: IAnnouncement;
     }
 
     export interface IDispatchProps {
-        postAnnouncement: (message: IAnnouncement) => IAnnouncement;
+        postAnnouncement: (message: string) => string;
     }
 
     export interface IOwnProps { } 
@@ -20,20 +19,19 @@ export namespace AnnouncementProps {
 
     //IState is the component state
     export interface IState {
-        announcement: IAnnouncement;
+        message: string;
     }
 }
 
 function mapStateToProps(state: any) {
     return {
-        valid: state.announcement.isValid,
-        announcement: state.announcement.announcement
+        valid: state.announcement.isValid
     };
 }
 
 function mapDispatchToProps(dispatch: any) {
     return {
-        postAnnouncement: (announcement: IAnnouncement): string => dispatch(postAnnouncement(announcement))
+        postAnnouncement: (message: string): string => dispatch(postAnnouncement(message))
     };
 }
 
