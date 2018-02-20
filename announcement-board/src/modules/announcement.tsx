@@ -4,16 +4,29 @@ export const ANNOUNCEMENT_POST = 'ANNOUNCEMENT_POST';
 
 export interface IAnnounceState {
     readonly isValid: boolean;
+    readonly announcement: IAnnouncement;
 }
 
-const initialState: IAnnounceState = {
-    isValid: false
+/**
+ * Making this up lol
+ **/
+const initialAnnouncement: IAnnouncement = {
+    message: '',
+    cycles: 0,
+    duration: 0,
+    color: 0,
+    caps: false
 };
 
-export function postAnnouncement(message: string) {
+const initialState: IAnnounceState = {
+    isValid: false,
+    announcement: initialAnnouncement
+};
+
+export function postAnnouncement(announcement: IAnnouncement) {
     return {
         type: ANNOUNCEMENT_POST,
-        payload: message
+        payload: announcement.message
     };
 }
 

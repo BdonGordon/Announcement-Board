@@ -2,8 +2,12 @@ import * as React from 'react';
 import { AnnouncementProps } from '../containers/AnnouncementContainer';
 import { IAnnouncement } from '../../../models/Announcement';
 
-const initialState: AnnouncementProps.IState = {
+const initialAnnouncement: IAnnouncement = {
     message: ''
+};
+
+const initialState: AnnouncementProps.IState = {
+    announcement: initialAnnouncement
 };
 
 class Announcement extends React.Component<AnnouncementProps.IProps, AnnouncementProps.IState> {
@@ -11,18 +15,17 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
         super(props);
 
         this.state = initialState;
+        this.state.announcement.message = '';
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e: React.FormEvent<HTMLInputElement>) {
-        this.setState({
-            message: e.currentTarget.value
-        });
+        return null;
     }
 
     handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
-        console.log(this.props.postAnnouncement(this.state.message));
+        console.log(this.props.postAnnouncement(this.props.announcement));
     }
 
     render() {
@@ -32,7 +35,12 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
                 <input type="text" className="textarea-dimens" onChange={this.handleChange} />
                 <br />
                 <button className="submit-button" onClick={this.handleSubmit} > Submit</button>
-                <label />
+
+                <br /><br />
+
+                <div className="announcement-strip">
+                    <label>Announcement one</label>
+                </div>
             </div>
         ); 
     }

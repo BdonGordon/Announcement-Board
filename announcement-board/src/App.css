@@ -57,3 +57,7 @@ h5 {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.announcement-strip {
+    background-color: bisque; 
+}
