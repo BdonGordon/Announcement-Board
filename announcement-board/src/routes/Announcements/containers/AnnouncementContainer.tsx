@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { IAnnouncement } from '../../../models/Announcement';
 
 export namespace AnnouncementProps {
+    //IStateProps is state values from the store
     export interface IStateProps {
         valid: boolean;
     }
@@ -16,6 +17,7 @@ export namespace AnnouncementProps {
     export interface IOwnProps { } 
     export interface IProps extends IStateProps, IDispatchProps, IOwnProps { }
 
+    //IState is the component state
     export interface IState {
         message: string;
     }
