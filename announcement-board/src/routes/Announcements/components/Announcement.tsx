@@ -29,6 +29,28 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
         this.handleEdit = this.handleEdit.bind(this);
     }
 
+    /**This portion right here shows a little bit about the life cycle of components. Nothing complex, but
+    * whenever an action is done on the app, one - or several - of the messages will log to show what's happening
+    **/
+    componentDidMount() {
+        console.log("componentDidMount");
+    }
+    componentWillMount() {
+        console.log("WillMount");
+    }
+    componentWillReceiveProps() {
+        console.log("WillReceiveProps");
+        
+    }
+    componentWillUpdate() {
+        console.log("WillUpdate");
+    }
+    componentDidUpdate() {
+        console.log("DidUpdate");
+    }
+    /**END OF MOUNTING **/
+
+
     /**
      * This is where the magic happens. DO NOT forget that we can use "let" keyword to define a variable
      * @param e
@@ -36,7 +58,6 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
     handleChange(e: React.FormEvent<HTMLInputElement>) {
         //major key. Since we cannot and SHOULD NOT update the state directly, let's create a variable that is assigned to it
         let updatedAnnouncement: IAnnouncement = this.state.announcement;
-        
         updatedAnnouncement.message = e.currentTarget.value; // this is where we get the inputted value from the InputElement
         //the other properties of the announcement can be modified like this too
 
@@ -56,11 +77,13 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
 
     handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
         this.props.postAnnouncement(this.state.announcement); //Boom, we done here
+        //let clearAnnouncement: IAnnouncement = this.state.announcement;
+        //clearAnnouncement.message = '';
         this.setState({
+            //announcement: clearAnnouncement,
             isValid: true,
             canEdit: true
         });
-        
     }
 
     /**
@@ -77,10 +100,11 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
     }
 
     render() {
+        console.log("render"); //just to show the lifecycle - nothing more
         return (
             <div>
                 <h5> Announcements </h5>
-                <input type="text" className="textarea-dimens" onChange={this.handleChange} disabled={this.state.canEdit} />
+                <input type="text" className="textarea-dimens" onChange={this.handleChange} disabled={this.state.canEdit} value={this.state.announcement.message} />
                 <br />
                 <button className="submit-button" onClick={this.handleSubmit} disabled={this.state.isValid} > Post Announcement</button>
                 <button className="submit-button" onClick={this.handleEdit}>Enter Announcement</button>
@@ -104,10 +128,6 @@ function UpdateLabel(props: any) {
         return <label> {props.announcement} </label>;
     }
     return null;
-}
-
-function UpdateInput(e: React.FormEvent<HTMLInputElement>) {
-    e.currentTarget.value = '';
 }
 
 export default Announcement;
