@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { AnnouncementProps } from '../containers/AnnouncementContainer';
 import { IAnnouncement } from '../../../models/Announcement';
+import '../../../ListStyling.css';
 
 /**
  * This is needed as the initial state for the IState's property that is of IAnnouncement
@@ -111,6 +112,13 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
 
                 <div className="announcement-strip">
                     <UpdateLabel submitted={this.state.canEdit} announcement={this.state.announcement.message} />
+                </div>
+
+                <div className="announcement-list">
+                    <h4 className="h4-list"> Announcement List </h4>
+                    <ul>
+                        <li>Announcement One</li>
+                    </ul>
                 </div>
                 
             </div>
