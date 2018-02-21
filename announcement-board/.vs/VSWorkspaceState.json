@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "\\src",
+    "\\src\\models",
+    "\\src\\modules",
+    "\\src\\routes",
+    "\\src\\routes\\Announcements",
+    "\\src\\routes\\Announcements\\components",
+    "\\src\\routes\\Announcements\\containers",
+    "\\src\\store"
+  ],
+  "PreviewInSolutionExplorer": false
+}

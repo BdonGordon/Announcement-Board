@@ -7,11 +7,12 @@ import { IAnnouncement } from '../../../models/Announcement';
 export namespace AnnouncementProps {
     //IStateProps is state values from the store
     export interface IStateProps {
-        valid: boolean;
+        announcement: IAnnouncement;
     }
 
     export interface IDispatchProps {
-        postAnnouncement: (message: string) => string;
+
+        postAnnouncement: (announcement: IAnnouncement) => Promise<void>;
     }
 
     export interface IOwnProps { } 
@@ -20,19 +21,23 @@ export namespace AnnouncementProps {
     //IState is the component state
     export interface IState {
         message: string;
+        cycles?: number;
+        duration?: number;
+        color?: number;
+        caps?: boolean;
     }
 }
 
 function mapStateToProps(state: any) {
     return {
-        valid: state.announcement.isValid,
+        //valid: state.announcement.isValid,
         announcement: state.announcement
     };
 }
 
 function mapDispatchToProps(dispatch: any) {
     return {
-        postAnnouncement: (message: IAnnouncement): string => dispatch(postAnnouncement(message))
+        postAnnouncement: (announcement: IAnnouncement): Promise<void> => dispatch(postAnnouncement(announcement))
     };
 }
 

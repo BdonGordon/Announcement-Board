@@ -3,7 +3,11 @@ import { AnnouncementProps } from '../containers/AnnouncementContainer';
 import { IAnnouncement } from '../../../models/Announcement';
 
 const initialState: AnnouncementProps.IState = {
-    message: ''
+    message: '',
+    cycles: 0,
+    duration: 0,
+    color: 0,
+    caps: false
 };
 
 class Announcement extends React.Component<AnnouncementProps.IProps, AnnouncementProps.IState> {
@@ -17,12 +21,17 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
 
     handleChange(e: React.FormEvent<HTMLInputElement>) {
         this.setState({
-            message: e.currentTarget.value
+            message: e.currentTarget.value,
+            cycles: 1, 
+            duration: 1,
+            color: 1,  /**set values for testing**/
+            caps: true
         });
     }
 
     handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
-        console.log(this.props.postAnnouncement(this.state.message));
+        this.props.postAnnouncement(this.state);
+        console.log(this.props.announcement.message);
     }
 
     render() {
