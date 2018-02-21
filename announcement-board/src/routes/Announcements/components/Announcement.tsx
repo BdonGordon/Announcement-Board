@@ -2,12 +2,25 @@ import * as React from 'react';
 import { AnnouncementProps } from '../containers/AnnouncementContainer';
 import { IAnnouncement } from '../../../models/Announcement';
 
+/*
 const initialState: AnnouncementProps.IState = {
     message: '',
     cycles: 0,
     duration: 0,
     color: 0,
     caps: false
+};*/
+
+const initialAnnouncement: IAnnouncement = {
+    message: '',
+    cycles: 0,
+    duration: 0,
+    color: 0,
+    caps: false
+};
+
+const initialState: AnnouncementProps.IState = {
+    announcement: initialAnnouncement
 };
 
 class Announcement extends React.Component<AnnouncementProps.IProps, AnnouncementProps.IState> {
@@ -20,18 +33,16 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
     }
 
     handleChange(e: React.FormEvent<HTMLInputElement>) {
+        let updateAnnouncement: IAnnouncement = this.state.announcement;
+        updateAnnouncement.message = e.currentTarget.value;
         this.setState({
-            message: e.currentTarget.value,
-            cycles: 1, 
-            duration: 1,
-            color: 1,  /**set values for testing**/
-            caps: true
+            announcement: updateAnnouncement
         });
     }
 
     handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
-        this.props.postAnnouncement(this.state);
-        console.log(this.props.announcement.message);
+        this.props.postAnnouncement(this.state.announcement);
+        console.log(this.state.announcement.message);
     }
 
     render() {

@@ -4,6 +4,10 @@ export const ANNOUNCEMENT_POST = 'ANNOUNCEMENT_POST';
 
 type IAnnouncementActions = IAnnouncementAction;
 
+/**
+ * The signature is of IAnnouncementAction which contains two properties in its interface: type and payload
+ * @param announcement
+ */
 export function postAnnouncement(announcement: IAnnouncement): IAnnouncementAction {
     return {
         type: ANNOUNCEMENT_POST,

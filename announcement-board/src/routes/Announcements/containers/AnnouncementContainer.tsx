@@ -11,20 +11,22 @@ export namespace AnnouncementProps {
     }
 
     export interface IDispatchProps {
-
         postAnnouncement: (announcement: IAnnouncement) => Promise<void>;
     }
 
     export interface IOwnProps { } 
     export interface IProps extends IStateProps, IDispatchProps, IOwnProps { }
 
-    //IState is the component state
+    /*IState is the component state
     export interface IState {
         message: string;
         cycles?: number;
         duration?: number;
         color?: number;
         caps?: boolean;
+    }*/
+    export interface IState {
+        announcement: IAnnouncement;
     }
 }
 
