@@ -22,6 +22,7 @@ export namespace AnnouncementProps {
     export interface IState {
         announcement: IAnnouncement;
         isValid: boolean;
+        canEdit: boolean;
     }
 }
 

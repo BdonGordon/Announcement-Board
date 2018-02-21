@@ -15,7 +15,8 @@ const initialAnnouncement: IAnnouncement = {
 
 const initialState: AnnouncementProps.IState = {
     announcement: initialAnnouncement,
-    isValid: false
+    isValid: true,
+    canEdit: true //TRUE == input DISABLED             ||     FALSE == input ENABLED
 };
 
 class Announcement extends React.Component<AnnouncementProps.IProps, AnnouncementProps.IState> {
@@ -25,6 +26,7 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
         this.state = initialState;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
     /**
@@ -34,21 +36,43 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
     handleChange(e: React.FormEvent<HTMLInputElement>) {
         //major key. Since we cannot and SHOULD NOT update the state directly, let's create a variable that is assigned to it
         let updatedAnnouncement: IAnnouncement = this.state.announcement;
+        
         updatedAnnouncement.message = e.currentTarget.value; // this is where we get the inputted value from the InputElement
         //the other properties of the announcement can be modified like this too
 
-        //Now we can setState legally by doing so:
-        this.setState({
-            announcement: updatedAnnouncement, 
-            isValid: false
-        });
+        if (updatedAnnouncement.message.length < 5) {
+            this.setState({
+                isValid: true
+            });
+        }
+        else {
+            //Now we can setState legally by doing so:
+            this.setState({
+                announcement: updatedAnnouncement,
+                isValid: false
+            });
+        }
     }
 
     handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
         this.props.postAnnouncement(this.state.announcement); //Boom, we done here
-        console.log(this.state.announcement.cycles);
         this.setState({
-            isValid: true
+            isValid: true,
+            canEdit: true
+        });
+        
+    }
+
+    /**
+     * Enables and disables to input area
+     * @param e
+     */
+    handleEdit(e: React.FormEvent<HTMLButtonElement>) {
+        let clearAnnouncement: IAnnouncement = this.state.announcement;
+        clearAnnouncement.message = '';
+        this.setState({
+            announcement: clearAnnouncement,
+            canEdit: false
         });
     }
 
@@ -56,12 +80,13 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
         return (
             <div>
                 <h5> Announcements </h5>
-                <input type="text" className="textarea-dimens" onChange={this.handleChange} />
+                <input type="text" className="textarea-dimens" onChange={this.handleChange} disabled={this.state.canEdit} />
                 <br />
-                <button className="submit-button" onClick={this.handleSubmit}>Submit</button>
+                <button className="submit-button" onClick={this.handleSubmit} disabled={this.state.isValid} > Post Announcement</button>
+                <button className="submit-button" onClick={this.handleEdit}>Enter Announcement</button>
 
                 <div className="announcement-strip">
-                    <UpdateLabel submitted={this.state.isValid} announcement={this.state.announcement.message} />
+                    <UpdateLabel submitted={this.state.canEdit} announcement={this.state.announcement.message} />
                 </div>
                 
             </div>
@@ -78,7 +103,11 @@ function UpdateLabel(props: any) {
     if (props.submitted) {
         return <label> {props.announcement} </label>;
     }
-    return <label>False</label>;
+    return null;
+}
+
+function UpdateInput(e: React.FormEvent<HTMLInputElement>) {
+    e.currentTarget.value = '';
 }
 
 export default Announcement;
