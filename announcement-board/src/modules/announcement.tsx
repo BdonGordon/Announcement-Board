@@ -1,27 +1,41 @@
-﻿import { IAnnouncement } from '../models/Announcement';
+﻿import { IAnnouncement, IAnnouncementAction } from '../models/Announcement';
 
 export const ANNOUNCEMENT_POST = 'ANNOUNCEMENT_POST';
+//this will be the type that is used for the desired function and the action parameter in the reducer function
+type IAnnouncementActions = IAnnouncementAction;
 
-export interface IAnnounceState {
-    readonly isValid: boolean;
-}
-
-const initialState: IAnnounceState = {
-    isValid: false
-};
-
-export function postAnnouncement(message: string) {
+/**
+ * We are returning the ENTIRE IAnnouncement object through the payload
+ * @param announcement
+ */
+export function postAnnouncement(announcement: IAnnouncement): IAnnouncementAction {
     return {
         type: ANNOUNCEMENT_POST,
-        payload: message
+        payload: announcement
     };
 }
 
-export function announcementReducer(state: IAnnounceState = initialState, action) {
+/**
+ * Just initializing an initialState for the state in the reducer function
+ */
+const initialState: IAnnouncement = {
+    message: '',
+    cycles: 0,
+    duration: 0,
+    color: 0,
+    caps: false
+};
+
+/**
+ * In the ANNOUNCEMENT_POST, we just want to return the payload 
+ * @param state => assigned to the initialState 
+ * @param action => of type IAnnouncementActions which allows for action.payload.anyproperty to be accessed and seen via Intellisense
+ */
+export function announcementReducer(state: IAnnouncement = initialState, action: IAnnouncementActions) {
     switch (action.type) {
         case ANNOUNCEMENT_POST:
             return Object.assign({}, state, {
-                isValid: true
+                announcement: action.payload
             });
 
         default:

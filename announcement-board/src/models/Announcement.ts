@@ -5,3 +5,8 @@
     color?: number;
     caps?: boolean;
 }
+
+export interface IAnnouncementAction {
+    type: string;
+    payload: IAnnouncement;
+}
