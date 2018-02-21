@@ -14,7 +14,8 @@ const initialAnnouncement: IAnnouncement = {
 };
 
 const initialState: AnnouncementProps.IState = {
-    announcement: initialAnnouncement
+    announcement: initialAnnouncement,
+    isValid: false
 };
 
 class Announcement extends React.Component<AnnouncementProps.IProps, AnnouncementProps.IState> {
@@ -38,13 +39,17 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
 
         //Now we can setState legally by doing so:
         this.setState({
-            announcement: updatedAnnouncement 
+            announcement: updatedAnnouncement, 
+            isValid: false
         });
     }
 
     handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
         this.props.postAnnouncement(this.state.announcement); //Boom, we done here
         console.log(this.state.announcement.cycles);
+        this.setState({
+            isValid: true
+        });
     }
 
     render() {
@@ -53,10 +58,27 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
                 <h5> Announcements </h5>
                 <input type="text" className="textarea-dimens" onChange={this.handleChange} />
                 <br />
-                <button className="submit-button" onClick={this.handleSubmit} > Submit</button>
+                <button className="submit-button" onClick={this.handleSubmit}>Submit</button>
+
+                <div className="announcement-strip">
+                    <UpdateLabel submitted={this.state.isValid} announcement={this.state.announcement.message} />
+                </div>
+                
             </div>
         ); 
     }
+}
+//announcement="hello"
+
+/**
+ * Might need a componentWillMount() kinda deal?
+ * @param props
+ */
+function UpdateLabel(props: any) {
+    if (props.submitted) {
+        return <label> {props.announcement} </label>;
+    }
+    return <label>False</label>;
 }
 
 export default Announcement;

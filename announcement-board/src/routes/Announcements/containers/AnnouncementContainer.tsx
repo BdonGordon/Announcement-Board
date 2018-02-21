@@ -21,6 +21,7 @@ export namespace AnnouncementProps {
     //in this case, we will just want to define IAnnouncement variable in order to access properties of IAnnouncement
     export interface IState {
         announcement: IAnnouncement;
+        isValid: boolean;
     }
 }
 
