@@ -1,6 +1,8 @@
 ﻿import { IAnnouncement, IAnnouncementAction } from '../models/Announcement';
 
 export const ANNOUNCEMENT_POST = 'ANNOUNCEMENT_POST';
+export const ANNOUNCEMENT_STORE = 'ANNOUNCEMENT_STORE';
+export const ANNOUNCEMENT_REMOVE = 'ANNOUNCEMENT_REMOVE';
 //this will be the type that is used for the desired function and the action parameter in the reducer function
 type IAnnouncementActions = IAnnouncementAction;
 

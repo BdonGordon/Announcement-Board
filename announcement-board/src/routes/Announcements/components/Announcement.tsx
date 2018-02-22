@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AnnouncementProps } from '../containers/AnnouncementContainer';
 import { IAnnouncement } from '../../../models/Announcement';
 import '../../../ListStyling.css';
+import AnnouncementList from '../../AnnouncementList/containers/AnnouncementListContainer';
 
 /**
  * This is needed as the initial state for the IState's property that is of IAnnouncement
@@ -116,16 +117,15 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
 
                 <div className="announcement-list">
                     <h4 className="h4-list"> Announcement List </h4>
-                    <ul>
-                        <li>Announcement One</li>
-                    </ul>
+                    <AnnouncementList isSubmitted={this.state.canEdit} announcement={this.state.announcement} />
                 </div>
                 
             </div>
         ); 
     }
 }
-//announcement="hello"
+
+//<AnnouncementList><UpdateList submitted={this.state.canEdit} announcement={this.state.announcement} /></AnnouncementList>
 
 /**
  * Might need a componentWillMount() kinda deal?
