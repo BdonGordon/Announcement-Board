@@ -1,4 +1,4 @@
-﻿import { IAnnouncement, IAnnouncementAction } from '../models/Announcement';
+﻿import { IAnnouncement, IAnnouncementAction, IAnnouncementState } from '../models/Announcement';
 
 export const ANNOUNCEMENT_POST = 'ANNOUNCEMENT_POST';
 export const ANNOUNCEMENT_STORE = 'ANNOUNCEMENT_STORE';
@@ -20,24 +20,35 @@ export function postAnnouncement(announcement: IAnnouncement): IAnnouncementActi
 /**
  * Just initializing an initialState for the state in the reducer function
  */
-const initialState: IAnnouncement = {
-    message: '',
-    cycles: 0,
-    duration: 0,
-    color: 0,
-    caps: false
+const initialState: IAnnouncementState = {
+    mostRecent: {
+        message: '',
+        cycles: 0,
+        duration: 0,
+        color: 0,
+        caps: false
+    },
+    announcements: []
 };
+/*
+const initialList: IAnnouncementList = {
+    postedAnnouncement: initialState,
+    announcementList: new Array()
+};
+*/
 
 /**
  * In the ANNOUNCEMENT_POST, we just want to return the payload 
  * @param state => assigned to the initialState 
  * @param action => of type IAnnouncementActions which allows for action.payload.anyproperty to be accessed and seen via Intellisense
  */
-export function announcementReducer(state: IAnnouncement = initialState, action: IAnnouncementActions) {
+export function announcementReducer(state: IAnnouncementState = initialState, action: IAnnouncementActions) {
     switch (action.type) {
         case ANNOUNCEMENT_POST:
+
             return Object.assign({}, state, {
-                announcement: action.payload
+                mostRecent: action.payload,
+                announcements: [...state.announcements, action.payload]
             });
 
         default:

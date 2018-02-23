@@ -4,8 +4,9 @@
     "\\src",
     "\\src\\routes",
     "\\src\\routes\\AnnouncementList",
-    "\\src\\routes\\Announcements"
+    "\\src\\routes\\AnnouncementList\\components",
+    "\\src\\routes\\AnnouncementList\\containers"
   ],
-  "SelectedNode": "\\src\\routes\\AnnouncementList\\index.tsx",
+  "SelectedNode": "\\src\\routes\\AnnouncementList\\components\\AnnouncementList.tsx",
   "PreviewInSolutionExplorer": false
 }

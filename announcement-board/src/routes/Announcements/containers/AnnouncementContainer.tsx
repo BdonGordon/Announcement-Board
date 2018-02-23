@@ -32,7 +32,7 @@ export namespace AnnouncementProps {
  */
 function mapStateToProps(state: any) {
     return {
-        announcement: state.announcement
+        announcement: state.announcement.mostRecent
     };
 }
 

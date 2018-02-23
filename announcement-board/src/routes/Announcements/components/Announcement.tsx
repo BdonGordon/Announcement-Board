@@ -34,22 +34,22 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
     /**This portion right here shows a little bit about the life cycle of components. Nothing complex, but
     * whenever an action is done on the app, one - or several - of the messages will log to show what's happening
     **/
-    componentDidMount() {
-        console.log("componentDidMount");
-    }
-    componentWillMount() {
-        console.log("WillMount");
-    }
-    componentWillReceiveProps() {
-        console.log("WillReceiveProps");
+    //componentDidMount() {
+    //    console.log("componentDidMount");
+    //}
+    //componentWillMount() {
+    //    console.log("WillMount");
+    //}
+    //componentWillReceiveProps() {
+    //    console.log("WillReceiveProps");
         
-    }
-    componentWillUpdate() {
-        console.log("WillUpdate");
-    }
-    componentDidUpdate() {
-        console.log("DidUpdate");
-    }
+    //}
+    //componentWillUpdate() {
+    //    console.log("WillUpdate");
+    //}
+    //componentDidUpdate() {
+    //    console.log("DidUpdate");
+    //}
     /**END OF MOUNTING **/
 
 
@@ -78,11 +78,9 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
     }
 
     handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
-        this.props.postAnnouncement(this.state.announcement); //Boom, we done here
-        //let clearAnnouncement: IAnnouncement = this.state.announcement;
-        //clearAnnouncement.message = '';
+        this.props.postAnnouncement(this.state.announcement);
+
         this.setState({
-            //announcement: clearAnnouncement,
             isValid: true,
             canEdit: true
         });
@@ -103,6 +101,7 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
 
     render() {
         console.log("render"); //just to show the lifecycle - nothing more
+        console.log(this.props); 
         return (
             <div>
                 <h5> Announcements </h5>
@@ -117,7 +116,7 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
 
                 <div className="announcement-list">
                     <h4 className="h4-list"> Announcement List </h4>
-                    <AnnouncementList isSubmitted={this.state.canEdit} announcement={this.state.announcement} />
+                    <AnnouncementList/>
                 </div>
                 
             </div>

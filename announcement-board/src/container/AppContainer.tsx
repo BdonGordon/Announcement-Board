@@ -1,8 +1,9 @@
 ﻿import * as React from 'react';
 import CoreLayout from '../layouts/CoreLayout';
 import { Provider, Store } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import makeRootReducer from '../store/reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export const store = createStore(makeRootReducer);
 

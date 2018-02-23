@@ -2,30 +2,50 @@
 import { ListProps } from '../containers/AnnouncementListContainer';
 import { IAnnouncement } from '../../../models/Announcement';
 
-const initialAnnouncement: IAnnouncement = {
-    message: '',
-    cycles: 0,
-    duration: 0,
-    color: 0,
-    caps: false
-};
-
-const initialState: ListProps.IState = {
-    announcement: initialAnnouncement
-};
-
 class AnnouncementList extends React.Component<ListProps.IProps, ListProps.IState> {
     constructor(props: ListProps.IProps) {
         super(props);
+
+        this.createList = this.createList.bind(this);
     }
 
+    componentDidMount() {
+        console.log("componentDidMount");
+    }
+    componentWillMount() {
+        console.log("WillMount");
+    }
+    componentWillReceiveProps() {
+        console.log("WillReceiveProps");
+
+    }
+    componentWillUpdate(nextProps: ListProps.IProps) {
+        if (nextProps.announcements !== this.props.announcements) {
+            this.setState({
+                postedAnnouncement: nextProps.announcements
+            });
+        }
+    }
+
+    componentDidUpdate() {
+        console.log("DidUpdate");
+    }
+
+    createList() {
+        if (this.props.announcements.length === 0) {
+            return "Empty";
+        }
+        console.log(this.props.announcements);
+        return this.props.announcements.length;
+    }
+    
     render() {
         return ( 
             <div>
                 <ul>
-                    <li>Announcement One</li>
-                    <li>{this.props.announcement.message}</li>
+                    <li>{this.createList()}</li>
                 </ul>
+                
             </div>
         );
     }
