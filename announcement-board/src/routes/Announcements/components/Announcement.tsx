@@ -8,6 +8,7 @@ import AnnouncementList from '../../AnnouncementList/containers/AnnouncementList
  * This is needed as the initial state for the IState's property that is of IAnnouncement
  */
 const initialAnnouncement: IAnnouncement = {
+    timeStamp: new Date().toLocaleTimeString(),
     message: '',
     cycles: 0,
     duration: 0,
@@ -61,6 +62,7 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
         //major key. Since we cannot and SHOULD NOT update the state directly, let's create a variable that is assigned to it
         let updatedAnnouncement: IAnnouncement = this.state.announcement;
         updatedAnnouncement.message = e.currentTarget.value; // this is where we get the inputted value from the InputElement
+        updatedAnnouncement.timeStamp = new Date().toLocaleTimeString();
         //the other properties of the announcement can be modified like this too
 
         if (updatedAnnouncement.message.length < 5) {

@@ -1,4 +1,5 @@
 ﻿export interface IAnnouncement {
+    timeStamp: string;
     message: string;
     cycles?: number;
     duration?: number;

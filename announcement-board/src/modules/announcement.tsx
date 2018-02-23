@@ -22,6 +22,7 @@ export function postAnnouncement(announcement: IAnnouncement): IAnnouncementActi
  */
 const initialState: IAnnouncementState = {
     mostRecent: {
+        timeStamp: new Date().toLocaleTimeString(),
         message: '',
         cycles: 0,
         duration: 0,
@@ -43,14 +44,12 @@ const initialList: IAnnouncementList = {
  * @param action => of type IAnnouncementActions which allows for action.payload.anyproperty to be accessed and seen via Intellisense
  */
 export function announcementReducer(state: IAnnouncementState = initialState, action: IAnnouncementActions) {
+    console.log(state.announcements);
     switch (action.type) {
         case ANNOUNCEMENT_POST:
-            let ann: IAnnouncement[] = state.announcements;
-            ann.push(action.payload);
-
             return Object.assign({}, state, {
                 mostRecent: action.payload,
-                announcements: ann
+                announcements: [...state.announcements, action.payload]
             });
 
         default:
@@ -59,3 +58,16 @@ export function announcementReducer(state: IAnnouncementState = initialState, ac
 
     return state;
 }
+
+/* One version of case but it does not render the AnnouncementList class
+
+case ANNOUNCEMENT_POST:
+    let ann: IAnnouncement[] = state.announcements;
+    ann.concat(action.payload);
+
+    return Object.assign({}, state, {
+        mostRecent: action.payload,
+        announcements: ann
+    });
+
+*/
