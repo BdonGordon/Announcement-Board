@@ -6,7 +6,7 @@ class AnnouncementList extends React.Component<ListProps.IProps, ListProps.IStat
     constructor(props: ListProps.IProps) {
         super(props);
 
-        this.createList = this.createList.bind(this);
+        //this.createList = this.createList.bind(this);
     }
 
     componentDidMount() {
@@ -25,25 +25,26 @@ class AnnouncementList extends React.Component<ListProps.IProps, ListProps.IStat
                 postedAnnouncement: nextProps.announcements
             });
         }
+        console.log("WillUpdate");
     }
 
     componentDidUpdate() {
         console.log("DidUpdate");
     }
 
-    createList() {
-        if (this.props.announcements.length === 0) {
-            return "Empty";
-        }
-        console.log(this.props.announcements);
-        return this.props.announcements.length;
-    }
+    //createList() {
+    //    if (this.props.announcements.length === 0) {
+    //        return "Empty";
+    //    }
+    //    console.log(this.props.announcements);
+    //    return this.props.announcements.length;
+    //}
     
     render() {
         return ( 
             <div>
                 <ul>
-                    <li>{this.createList()}</li>
+                   <li>derp</li>
                 </ul>
                 
             </div>

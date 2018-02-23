@@ -45,10 +45,12 @@ const initialList: IAnnouncementList = {
 export function announcementReducer(state: IAnnouncementState = initialState, action: IAnnouncementActions) {
     switch (action.type) {
         case ANNOUNCEMENT_POST:
+            let ann: IAnnouncement[] = state.announcements;
+            ann.push(action.payload);
 
             return Object.assign({}, state, {
                 mostRecent: action.payload,
-                announcements: [...state.announcements, action.payload]
+                announcements: ann
             });
 
         default:
