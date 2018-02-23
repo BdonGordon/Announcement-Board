@@ -31,12 +31,6 @@ const initialState: IAnnouncementState = {
     },
     announcements: []
 };
-/*
-const initialList: IAnnouncementList = {
-    postedAnnouncement: initialState,
-    announcementList: new Array()
-};
-*/
 
 /**
  * In the ANNOUNCEMENT_POST, we just want to return the payload 
@@ -44,7 +38,7 @@ const initialList: IAnnouncementList = {
  * @param action => of type IAnnouncementActions which allows for action.payload.anyproperty to be accessed and seen via Intellisense
  */
 export function announcementReducer(state: IAnnouncementState = initialState, action: IAnnouncementActions) {
-    console.log(state.announcements);
+    console.log(state.announcements.length);
     switch (action.type) {
         case ANNOUNCEMENT_POST:
             return Object.assign({}, state, {
@@ -58,16 +52,3 @@ export function announcementReducer(state: IAnnouncementState = initialState, ac
 
     return state;
 }
-
-/* One version of case but it does not render the AnnouncementList class
-
-case ANNOUNCEMENT_POST:
-    let ann: IAnnouncement[] = state.announcements;
-    ann.concat(action.payload);
-
-    return Object.assign({}, state, {
-        mostRecent: action.payload,
-        announcements: ann
-    });
-
-*/

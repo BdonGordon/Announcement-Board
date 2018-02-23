@@ -15,6 +15,7 @@ export namespace ListProps {
     export interface IProps extends IStateProps, IDispatchProps, IOwnProps { }
 
     export interface IState {
+        announcements: IAnnouncement[];
     }
 }
 

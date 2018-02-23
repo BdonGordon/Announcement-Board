@@ -2,11 +2,16 @@
 import { ListProps } from '../containers/AnnouncementListContainer';
 import { IAnnouncement } from '../../../models/Announcement';
 
+const initialList: ListProps.IState = {
+    announcements: []
+};
+
 class AnnouncementList extends React.Component<ListProps.IProps, ListProps.IState> {
     constructor(props: ListProps.IProps) {
         super(props);
+        this.state = initialList;
 
-        //this.createList = this.createList.bind(this);
+        this.createList = this.createList.bind(this);
     }
 
     componentDidMount() {
@@ -20,31 +25,35 @@ class AnnouncementList extends React.Component<ListProps.IProps, ListProps.IStat
 
     }
     componentWillUpdate(nextProps: ListProps.IProps) {
-        if (nextProps.announcements !== this.props.announcements) {
-            this.setState({
-                postedAnnouncement: nextProps.announcements
-            });
-        }
         console.log("WillUpdate");
+        console.log(this.props);
+
+        if (nextProps.announcements !== this.props.announcements) {
+            this.setState({ announcements: nextProps.announcements });
+        }
     }
 
     componentDidUpdate() {
         console.log("DidUpdate");
     }
 
-    //createList() {
-    //    if (this.props.announcements.length === 0) {
-    //        return "Empty";
-    //    }
-    //    console.log(this.props.announcements);
-    //    return this.props.announcements.length;
-    //}
+    createList() {
+        if (this.state.announcements.length === 0) {
+            return null;
+        }
+
+        return this.props.announcements.map((announcement, index) => {
+            return (
+                <li key={index}> {announcement.message} </li>
+            );
+        });
+    }
     
     render() {
         return ( 
             <div>
                 <ul>
-                   <li>derp</li>
+                    <span>{this.createList()}</span>
                 </ul>
                 
             </div>

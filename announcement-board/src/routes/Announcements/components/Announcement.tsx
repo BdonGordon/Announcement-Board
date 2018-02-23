@@ -32,28 +32,6 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
         this.handleEdit = this.handleEdit.bind(this);
     }
 
-    /**This portion right here shows a little bit about the life cycle of components. Nothing complex, but
-    * whenever an action is done on the app, one - or several - of the messages will log to show what's happening
-    **/
-    //componentDidMount() {
-    //    console.log("componentDidMount");
-    //}
-    //componentWillMount() {
-    //    console.log("WillMount");
-    //}
-    //componentWillReceiveProps() {
-    //    console.log("WillReceiveProps");
-        
-    //}
-    //componentWillUpdate() {
-    //    console.log("WillUpdate");
-    //}
-    //componentDidUpdate() {
-    //    console.log("DidUpdate");
-    //}
-    /**END OF MOUNTING **/
-
-
     /**
      * This is where the magic happens. DO NOT forget that we can use "let" keyword to define a variable
      * @param e
@@ -63,7 +41,6 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
         let updatedAnnouncement: IAnnouncement = this.state.announcement;
         updatedAnnouncement.message = e.currentTarget.value; // this is where we get the inputted value from the InputElement
         updatedAnnouncement.timeStamp = new Date().toLocaleTimeString();
-        //the other properties of the announcement can be modified like this too
 
         if (updatedAnnouncement.message.length < 5) {
             this.setState({
@@ -102,8 +79,6 @@ class Announcement extends React.Component<AnnouncementProps.IProps, Announcemen
     }
 
     render() {
-        console.log("render"); //just to show the lifecycle - nothing more
-        console.log(this.props); 
         return (
             <div>
                 <h5> Announcements </h5>
