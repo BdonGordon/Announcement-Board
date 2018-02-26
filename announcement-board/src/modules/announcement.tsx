@@ -17,6 +17,17 @@ export function postAnnouncement(announcement: IAnnouncement): IAnnouncementActi
     };
 }
 
+export function announcementStore(list: IAnnouncement[],announcement: IAnnouncement): IAnnouncement[] {
+    list.push(announcement);
+    console.log(list.length + ":");
+    
+    for(let i of list) {
+        console.log(i.message);
+    }
+
+    return list;
+}
+
 /**
  * Just initializing an initialState for the state in the reducer function
  */
@@ -52,3 +63,5 @@ export function announcementReducer(state: IAnnouncementState = initialState, ac
 
     return state;
 }
+
+//[...state.announcements, action.payload]

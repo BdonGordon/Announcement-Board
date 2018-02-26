@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\announcement-board",
+    "\\announcement-board\\src",
+    "\\announcement-board\\src\\routes",
+    "\\announcement-board\\src\\routes\\Announcements",
+    "\\announcement-board\\src\\routes\\Announcements\\components"
+  ],
+  "SelectedNode": "\\announcement-board\\src\\routes\\Announcements\\components\\Announcement.tsx",
+  "PreviewInSolutionExplorer": false
+}

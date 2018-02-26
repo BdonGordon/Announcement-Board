@@ -4,8 +4,20 @@ import { Provider, Store } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import makeRootReducer from '../store/reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { apiMiddleware } from 'redux-api-middleware';
 
-export const store = createStore(makeRootReducer);
+const composeEnhancers = (typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+
+const middlewares: any = [
+    //throttleActions([REFRESH_TOKEN_REQUEST], 2500),
+    apiMiddleware,
+    thunk
+];
+
+export const store = createStore(makeRootReducer, composeEnhancers(applyMiddleware(...middlewares))
+    );
 
 class AppContainer extends React.Component {
     render() {
